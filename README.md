@@ -12,3 +12,5 @@ mvn test -x
 before every run we need to run the command for goal
 
 mvn clean install 
+
+test-pipeline.yml is used for running the code in azure dev ops
