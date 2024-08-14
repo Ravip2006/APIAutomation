@@ -1,12 +1,16 @@
 package com.example.steps;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import io.restassured.RestAssured;
-import io.restassured.mapper.ObjectMapper;
+import io.restassured.internal.common.assertion.Assertion;
 import io.restassured.response.Response;
 import static org.junit.Assert.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Assert;
+import response.PetDetails;
 
 public class PetStoreStepDefs {
 
@@ -29,9 +33,10 @@ public class PetStoreStepDefs {
        // ObjectMapper objectMapper = new ObjectMapper();
         assertEquals(statusCode, response.getStatusCode());
     }
-    @And("the response body should contain {string}")
-    public void theResponseBodyShouldContain(String jsonPath) {
-        assertTrue(response.getBody().asString().contains(jsonPath));
+    @And("the response body should contain pet details")
+    public void the_Response_Body_Should_Contain_Pet_Details(String jsonPath) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        PetDetails petDetails = objectMapper.readValue(response.getBody().asString(),PetDetails.class);
+        assertTrue("Name of the Pet :" + petDetails.name,petDetails.name.equals("doggie"));
     }
-
 }
