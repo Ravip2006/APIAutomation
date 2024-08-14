@@ -5,7 +5,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 trigger:
-- feature/Ravi-CBATest
+- develop
 
 pool:
   vmImage: ubuntu-latest
