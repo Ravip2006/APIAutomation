@@ -30,7 +30,6 @@ public class PetStoreStepDefs {
 
     @Then("the response status code should be {int}")
     public void the_Response_Status_Code_ShouldBe(int statusCode) {
-       // ObjectMapper objectMapper = new ObjectMapper();
         assertEquals(statusCode, response.getStatusCode());
     }
     @And("the response body should contain pet details")
