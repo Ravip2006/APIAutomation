@@ -1,9 +1,10 @@
-package org.example.steps;
+package com.example.steps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import io.restassured.RestAssured;
+import io.restassured.mapper.ObjectMapper;
 import io.restassured.response.Response;
 import static org.junit.Assert.*;
 
@@ -25,6 +26,7 @@ public class PetStoreStepDefs {
 
     @Then("the response status code should be {int}")
     public void the_Response_Status_Code_ShouldBe(int statusCode) {
+       // ObjectMapper objectMapper = new ObjectMapper();
         assertEquals(statusCode, response.getStatusCode());
     }
     @And("the response body should contain {string}")
